@@ -13,10 +13,12 @@ import Moya
 // MARK: - Provider setup
 
 let endpointsClosure = { (target: MDRegistration, method: Moya.Method, parameters: [String: AnyObject]) -> Endpoint<MDRegistration> in
-    return Endpoint<MDRegistration>(URL: url(target), sampleResponse: .Success(200, target.sampleData), method: method, parameters: parameters)
+    return Endpoint<MDRegistration>(URL: url(target), sampleResponse: .Success(200, target.sampleData), method: method, parameters: parameters, parameterEncoding: Moya.ParameterEncoding.JSON)
 }
 
-let GitHubProvider = MoyaProvider(endpointsClosure: endpointsClosure)
+
+
+let MDRegistrationProvider = MoyaProvider(endpointsClosure: endpointsClosure)
 
 
 // MARK: - Provider support

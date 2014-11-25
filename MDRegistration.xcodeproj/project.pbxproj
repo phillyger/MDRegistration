@@ -16,6 +16,7 @@
 		280D29D81A237FE600709CF4 /* MDRegistrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280D29D71A237FE600709CF4 /* MDRegistrationTests.swift */; };
 		280D29E21A23807500709CF4 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 280D29E11A23807500709CF4 /* Login.storyboard */; };
 		280D29F11A23888B00709CF4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280D29F01A23888B00709CF4 /* LoginViewController.swift */; };
+		28C47C4D1A24B5E7005E1B43 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28C47C441A24B4BA005E1B43 /* SwiftyJSON.framework */; };
 		28DEF8981A23977300BCE5E8 /* MDRegistrationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DEF8971A23977300BCE5E8 /* MDRegistrationAPI.swift */; };
 		6EE75257957D23EF6DCF4343 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54C72B51DAE7F72BFA38B186 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -27,6 +28,41 @@
 			proxyType = 1;
 			remoteGlobalIDString = 280D29B91A237FE600709CF4;
 			remoteInfo = MDRegistration;
+		};
+		28C47C431A24B4BA005E1B43 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28C47C3C1A24B4BA005E1B43 /* SwiftyJSON.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2E4FEFDB19575BE100351305;
+			remoteInfo = SwiftyJSON;
+		};
+		28C47C451A24B4BA005E1B43 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28C47C3C1A24B4BA005E1B43 /* SwiftyJSON.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2E4FEFE619575BE100351305;
+			remoteInfo = SwiftyJSONTests;
+		};
+		28C47C471A24B4BA005E1B43 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28C47C3C1A24B4BA005E1B43 /* SwiftyJSON.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4EC1C1C91A0C1A2D0026ED0B;
+			remoteInfo = SwiftyJSONOSX;
+		};
+		28C47C491A24B4BA005E1B43 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28C47C3C1A24B4BA005E1B43 /* SwiftyJSON.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4EC1C1D31A0C1A2D0026ED0B;
+			remoteInfo = SwiftyJSONOSXTests;
+		};
+		28C47C4B1A24B4D9005E1B43 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28C47C3C1A24B4BA005E1B43 /* SwiftyJSON.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 2E4FEFDA19575BE100351305;
+			remoteInfo = SwiftyJSON;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -44,6 +80,7 @@
 		280D29D71A237FE600709CF4 /* MDRegistrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDRegistrationTests.swift; sourceTree = "<group>"; };
 		280D29E11A23807500709CF4 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = ../Login.storyboard; sourceTree = "<group>"; };
 		280D29F01A23888B00709CF4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
+		28C47C3C1A24B4BA005E1B43 /* SwiftyJSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyJSON.xcodeproj; path = SwiftyJSON/SwiftyJSON.xcodeproj; sourceTree = "<group>"; };
 		28DEF8971A23977300BCE5E8 /* MDRegistrationAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MDRegistrationAPI.swift; sourceTree = "<group>"; };
 		54C72B51DAE7F72BFA38B186 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		980E5B0E128B4185BB53F2E4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -55,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28C47C4D1A24B5E7005E1B43 /* SwiftyJSON.framework in Frameworks */,
 				6EE75257957D23EF6DCF4343 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -72,6 +110,7 @@
 		280D29B11A237FE600709CF4 = {
 			isa = PBXGroup;
 			children = (
+				28C47C3C1A24B4BA005E1B43 /* SwiftyJSON.xcodeproj */,
 				280D29BC1A237FE600709CF4 /* MDRegistration */,
 				280D29D41A237FE600709CF4 /* MDRegistrationTests */,
 				280D29BB1A237FE600709CF4 /* Products */,
@@ -133,6 +172,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		28C47C3D1A24B4BA005E1B43 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				28C47C441A24B4BA005E1B43 /* SwiftyJSON.framework */,
+				28C47C461A24B4BA005E1B43 /* SwiftyJSONTests.xctest */,
+				28C47C481A24B4BA005E1B43 /* SwiftyJSON.framework */,
+				28C47C4A1A24B4BA005E1B43 /* SwiftyJSONOSXTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		28DEF8941A2396F600BCE5E8 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +239,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				28C47C4C1A24B4D9005E1B43 /* PBXTargetDependency */,
 			);
 			name = MDRegistration;
 			productName = MDRegistration;
@@ -242,6 +293,12 @@
 			mainGroup = 280D29B11A237FE600709CF4;
 			productRefGroup = 280D29BB1A237FE600709CF4 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 28C47C3D1A24B4BA005E1B43 /* Products */;
+					ProjectRef = 28C47C3C1A24B4BA005E1B43 /* SwiftyJSON.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				280D29B91A237FE600709CF4 /* MDRegistration */,
@@ -249,6 +306,37 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		28C47C441A24B4BA005E1B43 /* SwiftyJSON.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftyJSON.framework;
+			remoteRef = 28C47C431A24B4BA005E1B43 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		28C47C461A24B4BA005E1B43 /* SwiftyJSONTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SwiftyJSONTests.xctest;
+			remoteRef = 28C47C451A24B4BA005E1B43 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		28C47C481A24B4BA005E1B43 /* SwiftyJSON.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftyJSON.framework;
+			remoteRef = 28C47C471A24B4BA005E1B43 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		28C47C4A1A24B4BA005E1B43 /* SwiftyJSONOSXTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SwiftyJSONOSXTests.xctest;
+			remoteRef = 28C47C491A24B4BA005E1B43 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		280D29B81A237FE600709CF4 /* Resources */ = {
@@ -347,6 +435,11 @@
 			isa = PBXTargetDependency;
 			target = 280D29B91A237FE600709CF4 /* MDRegistration */;
 			targetProxy = 280D29D21A237FE600709CF4 /* PBXContainerItemProxy */;
+		};
+		28C47C4C1A24B4D9005E1B43 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftyJSON;
+			targetProxy = 28C47C4B1A24B4D9005E1B43 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -486,6 +579,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = MDRegistrationTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MDRegistration.app/MDRegistration";
@@ -501,6 +595,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = MDRegistrationTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MDRegistration.app/MDRegistration";
