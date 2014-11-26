@@ -10,54 +10,143 @@ import Foundation
 import Alamofire
 import UIKit
 import SwiftyJSON
+import ReactiveCocoa
 
 class LoginViewController: UIViewController {
     
+
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var signInFailureText: UILabel!
     
-    @IBAction func login(sender: UIButton) {
+    
+    let signInService: RegistrationService
+    
+    required init(coder aDecoder: NSCoder) {
+        signInService = RegistrationService()
+        super.init(coder: aDecoder)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
         
-        println("Hello, world");
+        func validToBackground(valid: NSNumber) -> UIColor {
+            return valid.boolValue ? UIColor.clearColor() : UIColor.yellowColor()
+        }
         
+        func isValidText(validator:(String) -> Bool)(text: NSString) -> NSNumber {
+            return validator(text)
+        }
+        
+//        let validUsernameSignal = usernameTextField.rac_textSignal().mapAs(isValidText(isValidUsername)).distinctUntilChanged
+        
+        let validUsernameSignal = usernameTextField.rac_textSignal()
+            .mapAs(isValidText(isValidUsername))
+            .distinctUntilChanged()
+        
+        let validPasswordSignal = passwordTextField.rac_textSignal()
+            .mapAs(isValidText(isValidPassword))
+            .distinctUntilChanged()
+        
+        RAC(usernameTextField, "backgroundColor") << validUsernameSignal.mapAs(validToBackground)
+        
+        RAC(passwordTextField, "backgroundColor") << validPasswordSignal.mapAs(validToBackground)
+        
+        let signUpActiveSignal = RACSignalEx.combineLatestAs([validUsernameSignal, validPasswordSignal]) {
+            (validUsername: NSNumber, validPassword: NSNumber) -> NSNumber in
+            return validUsername && validPassword
+        }
+        
+        signUpActiveSignal.subscribeNextAs {
+            (active: NSNumber) in
+            self.signInButton.enabled = active.boolValue
+        }
+        
+        let signUpCommand = RACCommand(enabled: signUpActiveSignal) {
+            (any) -> RACSignal in
+            return self.signInSignal()
+        }
+        
+        signUpCommand.executionSignals
+            .flattenMap {
+                (any) -> RACSignal in
+                any as RACSignal
+            }.subscribeNextAs {
+                (success: NSNumber) in
+                self.handleSignInResult(success.boolValue)
+        }
+        
+        signInButton.rac_command = signUpCommand
+        
+    }
+    
+    func handleSignInResult(success: Bool) {
+        if success {
+//            self.performSegueWithIdentifier("signInSuccess", sender: self)
+            UIAlertView(title: "Sign in success", message: "Well Done ;-)",
+                delegate: nil, cancelButtonTitle: "OK").show()
+        } else {
+            UIAlertView(title: "Sign in failure", message: "try harder next time ;-)",
+                delegate: nil, cancelButtonTitle: "OK").show()
+        }
+    }
+    
+    // MARK: implementation
+    
+    func signInSignal() -> RACSignal {
+        return RACSignal.createSignal {
+            (subscriber) -> RACDisposable! in
+            
+            println("Sign-in initiated")
+            self.signInService.signInWithUsername(self.usernameTextField.text,
+                password: self.passwordTextField.text) {
+                    (success) in
+                    println("Sign-in completed")
+                    subscriber.sendNext(success)
+                    subscriber.sendCompleted()
+            }
+            return nil
+        }
+    }
+
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    
+    private func isValidUsername(username:String) -> Bool {
+        return countElements(username) > 3
+    }
+    
+    private func isValidPassword(password:String) -> Bool {
+        return countElements(password) > 3
+    }
+
+//    @IBAction func login(sender: UIButton) {
+//        
+//        println("Hello, world")
+    
 //        MDRegistrationProvider.request(.Authenticate, method: .POST, parameters: ["username": "ger@brilliantage.com", "password":"test1"], completion: { (data, status, resonse, error) -> () in
         
-
-        var parameters: [String: AnyObject] = ["username": "ger@brilliantage.com", "password":"test1"]
-//        let json = JSON(parameters)
-
+//        var success = true
+//        var error
         
-             MDRegistrationProvider.request(.Authenticate, method: .POST, parameters: parameters, completion: { (data, status, response, error) -> () in
-
-            var success = error == nil
-            if let data = data {
-                let json: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil)
-
-//                println(json)
-//                for (index: String, subJson: JSON) in json {
-//                    //Do something you want
-//                    println(index)
-//                    println(subJson)
-//                }
-                if let json = json as? NSDictionary {
-                    // Presumably, you'd parse the JSON into a model object. This is just a demo, so we'll keep it as-is.
-                    //                    self.repos = json
-                    println(json);
-                } else {
-                    success = false
-                }
-                
-                //                self.tableView.reloadData()
-            } else {
-                success = false
-            }
-            
-            if !success {
-                let alertController = UIAlertController(title: "MDRegistration Authentication", message: error?.description, preferredStyle: .Alert)
-                let ok = UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
-                    alertController.dismissViewControllerAnimated(true, completion: nil)
-                })
-                alertController.addAction(ok)
-                self.presentViewController(alertController, animated: true, completion: nil)
-            }
-        })
-    }
+        
+        
+//        if !success {
+//            let alertController = UIAlertController(title: "MDRegistration Authentication", message: error?.description, preferredStyle: .Alert)
+//            let ok = UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+//                alertController.dismissViewControllerAnimated(true, completion: nil)
+//            })
+//            alertController.addAction(ok)
+//            self.presentViewController(alertController, animated: true, completion: nil)
+//        }
+        
+//    }
+    
+    
 }
