@@ -16,6 +16,7 @@
 		280D29D81A237FE600709CF4 /* MDRegistrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280D29D71A237FE600709CF4 /* MDRegistrationTests.swift */; };
 		280D29E21A23807500709CF4 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 280D29E11A23807500709CF4 /* Login.storyboard */; };
 		280D29F11A23888B00709CF4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280D29F01A23888B00709CF4 /* LoginViewController.swift */; };
+		284A69741A262516000F450F /* SwiftRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284A69731A262516000F450F /* SwiftRegex.swift */; };
 		288407E71A2582A200D7F3C3 /* RAC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288407E41A2582A200D7F3C3 /* RAC.swift */; };
 		288407E81A2582A200D7F3C3 /* RACObserve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288407E51A2582A200D7F3C3 /* RACObserve.swift */; };
 		288407E91A2582A200D7F3C3 /* RACSignal+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288407E61A2582A200D7F3C3 /* RACSignal+Extensions.swift */; };
@@ -84,6 +85,7 @@
 		280D29D71A237FE600709CF4 /* MDRegistrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDRegistrationTests.swift; sourceTree = "<group>"; };
 		280D29E11A23807500709CF4 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = ../Login.storyboard; sourceTree = "<group>"; };
 		280D29F01A23888B00709CF4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
+		284A69731A262516000F450F /* SwiftRegex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftRegex.swift; sourceTree = "<group>"; };
 		288407E41A2582A200D7F3C3 /* RAC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RAC.swift; sourceTree = "<group>"; };
 		288407E51A2582A200D7F3C3 /* RACObserve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RACObserve.swift; sourceTree = "<group>"; };
 		288407E61A2582A200D7F3C3 /* RACSignal+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RACSignal+Extensions.swift"; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				288407E41A2582A200D7F3C3 /* RAC.swift */,
 				288407E51A2582A200D7F3C3 /* RACObserve.swift */,
 				288407E61A2582A200D7F3C3 /* RACSignal+Extensions.swift */,
+				284A69731A262516000F450F /* SwiftRegex.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				280D29C41A237FE600709CF4 /* DetailViewController.swift in Sources */,
 				280D29C21A237FE600709CF4 /* MasterViewController.swift in Sources */,
 				288407F01A258B7500D7F3C3 /* RegistrationService.swift in Sources */,
+				284A69741A262516000F450F /* SwiftRegex.swift in Sources */,
 				288407E91A2582A200D7F3C3 /* RACSignal+Extensions.swift in Sources */,
 				28DEF8981A23977300BCE5E8 /* MDRegistrationAPI.swift in Sources */,
 				288407E81A2582A200D7F3C3 /* RACObserve.swift in Sources */,

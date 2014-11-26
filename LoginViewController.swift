@@ -119,11 +119,11 @@ class LoginViewController: UIViewController {
 
     
     private func isValidUsername(username:String) -> Bool {
-        return countElements(username) > 3
+        return (countElements(username)) > 3 && (username =~ ".+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*")
     }
     
     private func isValidPassword(password:String) -> Bool {
-        return countElements(password) > 3
+        return (countElements(password) > 3)
     }
 
 //    @IBAction func login(sender: UIButton) {
