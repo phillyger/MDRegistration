@@ -8,8 +8,10 @@
 
 import Foundation
 import UIKit
+import SwiftyJSON
 
 typealias SignInReponse = (Bool) -> ()
+
 
 func delay(delay: Double, closure:()->()) {
     let time = dispatch_time(
@@ -21,51 +23,47 @@ func delay(delay: Double, closure:()->()) {
 
 class RegistrationService {
     
-    func signInWithUsername(username: NSString, password: NSString, complete: SignInReponse) {
+    func signIn(username: NSString, password: NSString, complete: SignInReponse) {
 //        delay(2.0) {
 //            let sucess = username == "user" && password == "password"
 //            complete(sucess)
 //        }
         
-        var success=false;
         
         var parameters: [String: AnyObject] = ["username": username, "password": password]
-        //        let json = JSON(parameters)
-        
+//                var parameters: [String: AnyObject] = ["username": "ger@brilliantage.com", "password": "test1"]
         
         MDRegistrationProvider.request(.Authenticate, method: .POST, parameters: parameters, completion: { (data, status, response, error) -> () in
             
             var success = error == nil
             if let data = data {
-                let json: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil)
+                let jsonDict = JSON(data: data)
+
+                if let code = jsonDict["outcome"]["code"].string {
                 
-                //                println(json)
-                //                for (index: String, subJson: JSON) in json {
-                //                    //Do something you want
-                //                    println(index)
-                //                    println(subJson)
-                //                }
-                success=true
-                 complete(success)
-                if let json = json as? NSDictionary {
-                    // Presumably, you'd parse the JSON into a model object. This is just a demo, so we'll keep it as-is.
-                    //                    self.repos = json
-                    println(json);
+//                    println(code)
+//                    println(jsonDict)
+                    success = (code.toInt() > 400000) ? false : true
+
                 } else {
-//                    success = false
+                   success = false
                 }
                 
                 //                self.tableView.reloadData()
             } else {
                 success = false
-                complete(success)
+                
             }
             
+            complete(success)
     
         })
-        
-        
 
+    }
+    
+    func isUsernameAvailable(username:String) {
+        
+        
     }
     
     

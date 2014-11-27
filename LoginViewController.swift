@@ -18,13 +18,15 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
-    @IBOutlet weak var signInFailureText: UILabel!
+
+    @IBOutlet weak var usernameClearButton: UIButton!
     
+    @IBOutlet weak var passwordClearButton: UIButton!
     
-    let signInService: RegistrationService
+    let registrationService: RegistrationService
     
     required init(coder aDecoder: NSCoder) {
-        signInService = RegistrationService()
+        registrationService = RegistrationService()
         super.init(coder: aDecoder)
     }
     
@@ -40,7 +42,22 @@ class LoginViewController: UIViewController {
             return validator(text)
         }
         
-//        let validUsernameSignal = usernameTextField.rac_textSignal().mapAs(isValidText(isValidUsername)).distinctUntilChanged
+        
+//        let usernameSignal = self.usernameTextField.rac_textSignal()
+        
+        usernameClearButton.rac_signalForControlEvents(UIControlEvents.TouchUpInside)
+            .subscribeNext{
+            _ in
+            println("Button pressed!")
+            self.usernameTextField.text = nil
+        }
+        
+         passwordClearButton.rac_signalForControlEvents(UIControlEvents.TouchUpInside)
+            .subscribeNext{
+                _ in
+                println("Button pressed!")
+                self.passwordTextField.text = nil
+        }
         
         let validUsernameSignal = usernameTextField.rac_textSignal()
             .mapAs(isValidText(isValidUsername))
@@ -50,8 +67,11 @@ class LoginViewController: UIViewController {
             .mapAs(isValidText(isValidPassword))
             .distinctUntilChanged()
         
-        RAC(usernameTextField, "backgroundColor") << validUsernameSignal.mapAs(validToBackground)
+//        RAC(usernameTextField, "backgroundColor") << RACSignal.m([validUsernameSignal,resetUsernameSignal]).mapAs(validToBackground)
         
+        RAC(usernameTextField, "backgroundColor") << validUsernameSignal.mapAs(validToBackground)
+//        RAC(usernameTextField, "backgroundColor") << RACSignal.ass(validUsernameSignal).mapAs(validToBackground)
+
         RAC(passwordTextField, "backgroundColor") << validPasswordSignal.mapAs(validToBackground)
         
         let signUpActiveSignal = RACSignalEx.combineLatestAs([validUsernameSignal, validPasswordSignal]) {
@@ -85,10 +105,17 @@ class LoginViewController: UIViewController {
     func handleSignInResult(success: Bool) {
         if success {
 //            self.performSegueWithIdentifier("signInSuccess", sender: self)
-            UIAlertView(title: "Sign in success", message: "Well Done ;-)",
-                delegate: nil, cancelButtonTitle: "OK").show()
+            
+            let viewController:UISplitViewController = UIStoryboard(name: "Main", bundle: nil)
+                .instantiateInitialViewController() as UISplitViewController
+
+            
+            self.presentViewController(viewController, animated: false, completion: nil)
+            
+//            UIAlertView(title: "Sign in success", message: "Well Done ;-)",
+//                delegate: nil, cancelButtonTitle: "OK").show()
         } else {
-            UIAlertView(title: "Sign in failure", message: "try harder next time ;-)",
+            UIAlertView(title: "Sign in failure", message: "Please check your credentials",
                 delegate: nil, cancelButtonTitle: "OK").show()
         }
     }
@@ -100,7 +127,7 @@ class LoginViewController: UIViewController {
             (subscriber) -> RACDisposable! in
             
             println("Sign-in initiated")
-            self.signInService.signInWithUsername(self.usernameTextField.text,
+            self.registrationService.signIn(self.usernameTextField.text,
                 password: self.passwordTextField.text) {
                     (success) in
                     println("Sign-in completed")
@@ -110,6 +137,7 @@ class LoginViewController: UIViewController {
             return nil
         }
     }
+    
 
     
     override func didReceiveMemoryWarning() {
@@ -117,6 +145,10 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+//    private func clearField(text:String) -> Bool {
+//        if(text.isEmpty) return false
+//        else return true;
+//    }
     
     private func isValidUsername(username:String) -> Bool {
         return (countElements(username)) > 3 && (username =~ ".+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*")
@@ -126,27 +158,6 @@ class LoginViewController: UIViewController {
         return (countElements(password) > 3)
     }
 
-//    @IBAction func login(sender: UIButton) {
-//        
-//        println("Hello, world")
-    
-//        MDRegistrationProvider.request(.Authenticate, method: .POST, parameters: ["username": "ger@brilliantage.com", "password":"test1"], completion: { (data, status, resonse, error) -> () in
-        
-//        var success = true
-//        var error
-        
-        
-        
-//        if !success {
-//            let alertController = UIAlertController(title: "MDRegistration Authentication", message: error?.description, preferredStyle: .Alert)
-//            let ok = UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
-//                alertController.dismissViewControllerAnimated(true, completion: nil)
-//            })
-//            alertController.addAction(ok)
-//            self.presentViewController(alertController, animated: true, completion: nil)
-//        }
-        
-//    }
     
     
 }
